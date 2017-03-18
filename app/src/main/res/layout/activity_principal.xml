@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout android:orientation="vertical" android:background="@color/background_floating_material_dark" tools:context="com.example.lucas.projeto_v14.principal" android:paddingTop="@dimen/activity_vertical_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingBottom="@dimen/activity_vertical_margin" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ScrollView android:layout_height="match_parent" android:layout_width="match_parent">
+
+
+        <LinearLayout android:orientation="vertical" android:layout_height="match_parent" android:layout_width="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:id="@+id/imageView"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/brasil" />
+
+            <TextView android:layout_height="match_parent" android:layout_width="wrap_content" android:id="@+id/textView1" android:textSize="25sp" android:textColor="#fff" android:text="ORIGEM"/>
+
+            <Spinner android:background="@color/accent_material_light" android:layout_height="match_parent" android:layout_width="fill_parent" android:id="@+id/spnOrigem"/>
+
+            <TextView android:layout_height="match_parent" android:layout_width="wrap_content" android:id="@+id/textView2" android:textSize="25sp" android:textColor="#fff" android:text="DESTINO"/>
+
+            <Spinner android:background="@color/accent_material_light" android:layout_height="match_parent" android:layout_width="fill_parent" android:id="@+id/spnDestino"/>
+
+            <TextView android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/TextView4" android:textSize="24sp" android:textColor="#fff" android:text="Heurística da Rota" android:textAlignment="center"/>
+
+
+            <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent">
+
+                <RadioGroup android:layout_height="match_parent" android:layout_width="match_parent" android:id="@+id/tipoRota">
+                    <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/hops" android:textColor="#fff" android:text="HOPS" android:checked="true"/>
+                    <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/dist" android:textColor="#fff" android:text="Distância Geografica"/>
+                    <RadioButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/custo" android:textColor="#fff" android:text="Custo"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent">
+
+                <Button android:background="@color/accent_material_light" android:layout_height="wrap_content" android:layout_width="match_parent" android:id="@+id/btnCalcular" android:text="Calcular" android:layout_marginLeft="0dp" android:onClick="Calc" android:layout_gravity="left"/>
+
+                <!--Button android:background="#69D2E7" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/btn2" android:text="Banco" android:layout_marginLeft="0dp" android:onClick="tela2"/>
+            -->
+            </LinearLayout>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/txt_resp"
+                android:textColor="#ffffff"/>
+
+            <ListView
+                android:background="@color/accent_material_light"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:id="@+id/list_resp">
+            </ListView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
