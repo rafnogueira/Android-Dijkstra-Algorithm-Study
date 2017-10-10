@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/rafael/Dev/Android/Android-Dijkstra-Algorithm-Study/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9b76bbf8fc1dd82f6d5e9cad9ec6f374b15bc4a4">
+        <dex dex="/Users/rafael/Dev/Android/Android-Dijkstra-Algorithm-Study/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_046dd13f1856af42c336dfb8be0669be500b00f3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/rafael/Dev/Android/Android-Dijkstra-Algorithm-Study/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/rafael/Dev/Android/Android-Dijkstra-Algorithm-Study/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_707d8365ccc53434c4db3e1877be3adbfde8def3/classes.dex" />
+    </item>
+
+</items>
