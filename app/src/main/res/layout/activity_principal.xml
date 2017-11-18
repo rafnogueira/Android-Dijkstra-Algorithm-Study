@@ -74,6 +74,35 @@
                 </RadioGroup>
             </LinearLayout>
 
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:id="@+id/txtViewNodeDisableList"
+                android:textSize="25sp"
+                android:textColor="#fff"
+                android:text="Nodes To Disable"
+                />
+            <Spinner android:background="@color/accent_material_light"
+                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:id="@+id/spinnerDisabler"
+                android:text="Disable Selected Node" />
+
+            <Button android:background="@color/accent_material_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Disable Selected Node"
+                android:id="@+id/btnDisableNode"
+                />
+
+
+
+            <Button android:background="@color/accent_material_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enable Selected Node"
+            android:id="@+id/btnEnableNode"
+            />
             <LinearLayout android:layout_height="match_parent" android:layout_width="match_parent">
                 <Button android:background="@color/accent_material_light"
                     android:layout_height="wrap_content"
@@ -83,25 +112,8 @@
                     android:layout_marginLeft="0dp"
                     android:layout_gravity="left"/>
             </LinearLayout>
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/spinnerDisabler">
-            </Spinner>
 
-            <Button android:background="@color/accent_material_light"
-                android:layoutDirection="rtl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Disable Selected Node"
-                android:id="@+id/btnDisableNode"
-                />
 
-            <TextView
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:id="@+id/txt_resp"
-                android:textColor="#ffffff"/>
             <ListView
                 android:background="@color/accent_material_light"
                 android:layout_height="wrap_content"
@@ -109,13 +121,21 @@
                 android:id="@+id/listResult">
             </ListView>
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinnerResult"
-                >
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:id="@+id/txtViewResultSpinn"
+                android:textSize="25sp"
+                android:textColor="#fff"
+                android:text="Result Path:"
+                />
 
-            </Spinner>
+            <Spinner android:background="@color/accent_material_light"
+                android:layout_height="match_parent"
+                android:layout_width="fill_parent"
+                android:id="@+id/spinnerResult"
+                />
+
 
         </LinearLayout>
     </ScrollView>

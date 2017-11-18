@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rafael.projeto_rafael.R;
@@ -24,9 +23,12 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     // Objetos da Interface
     private Spinner spinnerStartSelection;
     private Spinner spinnerDestinationSelection;
-    private Spinner spinnerDisabledNodes;
+    private Spinner spinnerDisablerNodes;
+    private Spinner spinnerResult;
 
     private Button btnMakePath;
+    private Button btnDisableNode;
+    private Button btnEnableNode;
     private ArrayAdapter<String> optionsAdapter;
 
     // The new code
@@ -97,14 +99,20 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         spinnerDestinationSelection = (Spinner) findViewById(R.id.spinnerDestination);
         spinnerDestinationSelection.setAdapter(optionsAdapter);
 
-        spinnerDisabledNodes = (Spinner) findViewById(R.id.spinnerDisabler);
-        spinnerDisabledNodes.setAdapter(optionsAdapter);
+        spinnerDisablerNodes = (Spinner) findViewById(R.id.spinnerDisabler);
+        spinnerDisablerNodes.setAdapter(optionsAdapter);
 
+        spinnerResult =(Spinner) findViewById(R.id.spinnerResult);
 
-        // Entrada do Botão
+        //Buttons actions set
         btnMakePath = (Button) findViewById(R.id.btnMakePath);
         btnMakePath.setOnClickListener(this);
 
+        btnDisableNode = (Button) findViewById(R.id.btnDisableNode);
+        btnDisableNode.setOnClickListener(this);
+
+        btnEnableNode  = (Button) findViewById(R.id.btnEnableNode);
+        btnEnableNode.setOnClickListener(this);
 
         graph = new Graph();
         nodes = new ArrayList<Node>();
@@ -265,73 +273,115 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     // Android xml and layout
     public void calculateShortestPath() {
         reloadGraph();
+
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupRouteType);
-//        radioGroup.setOnCheckedChangeListener(this);
+        List<Node> resultPath = null;
 
         switch (radioGroup.getCheckedRadioButtonId()) {
-//            case R.id.heuristics_A:
-//                graph.encontrarCaminhoMetricaB();
-//                break;
-//            case R.id.heuristics_B:
-//                graph.encontrarCaminhoMetricaB();
-//                break;
-//            case R.id.heuristics_C:
-//                graph.encontrarCaminhoMetricaB();
-//                break;
+            case R.id.heuristics_A:
+                resultPath = graph.findShortestPathB(transformSelectionIndexSrcNo(), transformSelectionIndexDstNode());
+                break;
+            case R.id.heuristics_B:
+                resultPath = graph.findShortestPathB(transformSelectionIndexSrcNo(), transformSelectionIndexDstNode());
+                break;
+            case R.id.heuristics_C:
+                resultPath = graph.findShortestPathB(transformSelectionIndexSrcNo(), transformSelectionIndexDstNode());
+                break;
 
             default:
                 break;
         }
 
+        String Result =  "";
+        ArrayList<String> nodesResult = new ArrayList<String>();
+
+        for(int  i= 0; i < resultPath.size(); i++)
+        {
+            Result += resultPath.get(i).getName()+" - ";
+            String Test = "Name:" + resultPath.get(i).getName()+"Index: "+ resultPath.get(i).getIndex()+" Size Cost: "+resultPath.get(i).getDistance();
+            nodesResult.add(Test);
+        }
+
+        messageToast(Result);
+        //CastThearraylist result to a raw array java
+        String[] forAdapter =  nodesResult.toArray(new String[nodesResult.size()]);
+
+        ArrayAdapter<String>  optionsAdapterResult = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, forAdapter);
+
+        spinnerResult.setAdapter(optionsAdapterResult);
+
     }
+
 //    public void calcularDistancia() {
 //
-//        reloadGraph();
 //        //Will return a list of nodes
-//        List<Node> path = graph.findShortestPathB(transformSelectionSrcNo(), transformSelectionDstNo());
-//
-//
+//        List<Node> path = graph.findShortestPathB(transformSelectionIndexSrcNo(), transformSelectionIndexDstNode());
 //    }
-//
+
 //    public void calcularCusto() {
-//        // 2 para fazer rota pelo custo
+//        //2 para fazer rota pelo custo
 //
-//        recarregarGrafo();
-//        List<No> caminho = grafo.encontrarCaminhoMetricaC(transformSelectionSrcNo(), transformSelectionDstNo());
+//        List<Node> caminho = graph.findencontrarCaminhoMetricaC(transformSelectionSrcNo(), transformSelectionDstNo());
 //        criarAnimacao(caminho, 2);
-//
 //    }
-//
-//    // ; )
-//    public No transformSelectionDstNo() {
-//        return nos.get(this.cbDestino.getSelectedIndex());
-//    }
-//
-//    // :)
-//    public No transformSelectionSrcNo() {
-//        return nos.get(this.cbInicio.getSelectedIndex());
-//    }
-//
-//    public void desabilitarNo()
-//    {
-//        NosDesabilitados[cbHabilitado.getSelectedIndex()] = 1;
-//    }
-//    public void habilitarNo()
-//    {
-//        NosDesabilitados[cbHabilitado.getSelectedIndex()] = 0;
-//    }
+
+    // this why disabledNodes int matrix needs to have the same size as nodes list, and also same organization
+    // transform the selected spinner index to a object, searching this object in the nodes arraylist Source
+    public Node transformSelectionIndexSrcNo()
+    {
+        return nodes.get(this.spinnerStartSelection.getSelectedItemPosition());
+    }
+    // transform the selected spinner index to a object, searching this object in the nodes arraylist Destination
+    public Node transformSelectionIndexDstNode()
+    {
+        return nodes.get(spinnerDestinationSelection.getSelectedItemPosition());
+    }
+
+    //Will Disable the node // this why disabledNodes int matrix needs to have the same size as nodes list, and also same organization™
+    public void disableNode()
+    {
+        if(disabledNodes[spinnerDisablerNodes.getSelectedItemPosition()] == 1){
+
+        }else{
+            disabledNodes[spinnerDisablerNodes.getSelectedItemPosition()] = 1;
+        }
+
+    }
+    public void enableNode()
+    {
+        if( disabledNodes[spinnerDisablerNodes.getSelectedItemPosition()] == 0)
+        {
+            messageToast("This Node is already disabled");
+        }else{
+            disabledNodes[spinnerDisablerNodes.getSelectedItemPosition()] = 0;
+        }
+
+    }
 
 
     //Buttons click event listeners
     @Override
     public void onClick(View view) {
+
         if (view.getId() == R.id.btnMakePath) {
+            messageToast("Making path");
             calculateShortestPath();
+        }
+        if(view.getId() == R.id.btnDisableNode)
+        {
+            messageToast("Disablign the node");
+            disableNode();
+        }
+        if(view.getId() == R.id.btnEnableNode)
+        {
+            messageToast("Enabling");
+            enableNode();
         }
     }
 
-    public void MessageToast(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+    public void messageToast(String msg) {
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 }
